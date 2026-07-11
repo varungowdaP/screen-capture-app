@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Capture</title>
+    <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar"> 
+        <span>Screen Capture App</span>
+        <button id="close-btn" class="close-btn">×</button>
+    </div>
+    
+    <div class="container">
+        <!-- The camera image you already had -->
+        <img src="D:\electron\camers.png" class="img-zoom" alt="Camera Icon">
+        
+        <!-- Controls -->
+        <div class="controls">
+            <button id="capture-btn" class="btn primary">Capture Screen</button>
+            <button id="save-btn" class="btn secondary" style="display: none;">Save Image</button>
+        </div>
+
+        <!-- Where the screenshot preview will appear -->
+        <div class="preview-container">
+            <img id="preview-img" src="" alt="Screenshot Preview" style="display: none;">
+        </div>
+    </div>
+
+    <!-- Make sure to include renderer.js -->
+    <script src="./renderer.js"></script>
+</body>
+</html>
