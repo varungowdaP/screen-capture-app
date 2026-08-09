@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 if (!app.isPackaged) {
-    try { require('electron-reload')(__dirname); } catch (_) {}
+    try { require('electron-reload')(__dirname); } catch (_) { }
 }
 
 
@@ -13,7 +13,7 @@ app.whenReady().then(() => {
         height: 600,
         frame: false, // Premium borderless look
         transparent: true,
-        icon:"pictures_97526.ico",
+        icon: path.join(__dirname, "icon.ico"),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
@@ -35,25 +35,25 @@ app.whenReady().then(() => {
     ipcMain.handle('capture-screen', async (event) => {
         // Hide window so it doesn't appear in the screenshot
         window.hide();
-        
+
         // Wait 300ms to ensure the window is fully hidden
         await new Promise(resolve => setTimeout(resolve, 300));
 
         const primaryDisplay = screen.getPrimaryDisplay();
         const { width, height } = primaryDisplay.size;
-        
+
         // Get the high-resolution screenshot
-        const sources = await desktopCapturer.getSources({ 
-            types: ['screen'], 
-            thumbnailSize: { 
-                width: width * primaryDisplay.scaleFactor, 
-                height: height * primaryDisplay.scaleFactor 
-            } 
+        const sources = await desktopCapturer.getSources({
+            types: ['screen'],
+            thumbnailSize: {
+                width: width * primaryDisplay.scaleFactor,
+                height: height * primaryDisplay.scaleFactor
+            }
         });
-        
+
         // Show window again
         window.show();
-        
+
         // Return image as base64 string to the frontend
         return sources[0].thumbnail.toDataURL();
     });

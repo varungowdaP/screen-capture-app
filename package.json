@@ -11,9 +11,12 @@
   "build": {
     "appId": "com.yourname.screencapture",
     "productName": "ScreenCapture",
+    "directories": {
+      "output": "build-dist"
+    },
     "win": {
-      "target": "nsis",
-      "icon": "pictures_97526.ico"
+      "target": "nsis"
+      ,"icon":"icon.ico"
     },
     "nsis": {
       "oneClick": false,
